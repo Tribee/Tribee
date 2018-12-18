@@ -14,6 +14,7 @@
 	<a href = "getBoardList.do">boardList</a>
 	<a href = "insertBoard.jsp">insertBoard</a>
 	<a href = "allCountries.do"> test </a>
+	<a href = "myPage.do">myPage</a>
 	
 
 	<br><br><br><br>
