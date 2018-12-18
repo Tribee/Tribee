@@ -13,7 +13,7 @@
 	<a href = "test2.jsp">test</a>
 	<a href = "getBoardList.do">boardList</a>
 	<a href = "insertBoard.jsp">insertBoard</a>
-	<a href = "allCountries.do"> test </a>
+	<a href = "allCountries.do"> adminPage </a>
 	
 
 	<br><br><br><br>
