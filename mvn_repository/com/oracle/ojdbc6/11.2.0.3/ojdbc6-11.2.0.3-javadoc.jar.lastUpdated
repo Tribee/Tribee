@@ -1,0 +1,6 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Nov 22 11:51:36 KST 2018
+http\://repo.spring.io/plugins-release/.error=Could not transfer artifact com.oracle\:ojdbc6\:jar\:javadoc\:11.2.0.3 from/to oracle (http\://repo.spring.io/plugins-release/)\: repo.spring.io
+@default-oracle-http\://repo.spring.io/plugins-release/.lastUpdated=1542855096470
+https\://repo.maven.apache.org/maven2/.lastUpdated=1542854903961
+https\://repo.maven.apache.org/maven2/.error=

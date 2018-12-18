@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapper 태그의 namespace 속성 필수 작성 -->
+<mapper namespace="board">
+	<select id="getBoard"
+		parameterType="com.spring.trip.board.BoardVO"
+		resultType="com.spring.trip.board.BoardVO">
+		select * from b_board where bb_idx = #{bb_idx}
+	</select>
+
+	<select id="getBoardList" parameterType="com.spring.trip.board.BoardVO"
+		resultType="com.spring.trip.board.BoardVO">
+		select b.nick_name , a.*  from b_board a, member b where a.id = b.id
+	</select>
+	
+	<select id="getBoardSeq" resultType="int">
+		select bb_idx_seq.nextval from dual
+	</select>
+	
+	<insert id="insertBoard" parameterType="com.spring.trip.board.BoardVO">
+		insert into b_board (bb_idx, id, title, content, start_date, end_date, place, latitude, longitude, country, address)
+			values(#{bb_idx}, 'TEST', #{title}, #{content}, #{start_date}, #{end_date}, #{place}, #{latitude}, #{longitude}, #{country}, #{address})
+	</insert>
+	
+	<update id="updateBoard"
+		parameterType="com.spring.trip.board.BoardVO">
+		update b_board
+		set title=#{title}, content=#{content}, regdate=sysdate,
+		l_idx=#{l_idx}, latitude=#{latitude}, longitude=#{longitude},
+		start_date=#{start_date}, end_date=#{end_date}, budget=#{budget},
+		place=#{place}
+		where bb_idx = #{bb_idx}
+	</update>
+
+	<delete id="deleteBoard"
+		parameterType="com.spring.trip.board.BoardVO">
+		delete from b_board 
+		where bb_idx = #{bb_idx}
+	</delete>
+	
+	<!-- 전체 게시글 수 조회 -->
+	<select id="allBoards"
+		resultType="int">
+		select count(*) from b_board	
+	</select>
+	
+	<!-- 등록된 나라 수 조회 -->
+	<select id="allCountries"
+		resultType="int">
+		select count(country) from b_board	
+	</select>
+	
+	
+</mapper>  
+
+
+
+
+
+

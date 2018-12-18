@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Nov 26 10:55:21 KST 2018
+spring-jdbc-4.3.5.RELEASE-sources.jar>oracle=
+spring-jdbc-4.3.5.RELEASE.pom>oracle=
+spring-jdbc-4.3.5.RELEASE.jar>oracle=

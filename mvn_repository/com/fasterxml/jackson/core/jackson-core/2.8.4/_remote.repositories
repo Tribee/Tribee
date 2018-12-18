@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Dec 18 14:39:01 KST 2018
+jackson-core-2.8.4.pom>oracle=
+jackson-core-2.8.4-sources.jar>oracle=
+jackson-core-2.8.4.jar>oracle=

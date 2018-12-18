@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapper 태그의 namespace 속성 필수 작성 -->
+<mapper namespace="admin">
+	
+	
+		<!-- 관리자 로그인시 조인 조회 -->
+	<select id="getAdminLogin"
+		parameterType="String" resultType="com.spring.trip.admin.AdminVO">
+		SELECT A.* 
+		FROM ADMIN A, MEMBER M 
+		WHERE UPPER(A.ID)=UPPER(#{id});
+	</select>
+
+	<select id="getAdmin"
+		parameterType="com.spring.trip.admin.AdminVO"
+		resultType="com.spring.trip.admin.AdminVO">
+		select * from admin where a_idx = #{a_idx}
+	</select>
+		<select id="getAdminList"
+		resultType="com.spring.trip.admin.AdminVO">
+		select * from admin order by a_idx 
+	</select>
+
+	<insert id="insertAdmin"
+		parameterType="com.spring.trip.admin.AdminVO">
+		insert into admin (a_idx, name, id, pw, age, phone, email, addr, rank, regdate)
+		values (a_idx_seq.nextval, #{name}, #{id}, #{pw}, #{age}, #{phone}, 
+				#{email}, #{addr}, 0, sysdate)
+	</insert>
+	
+	<update id="updateAdmin"
+		parameterType="com.spring.trip.admin.AdminVO">
+		update admin
+		set name=#{name}, pw=#{pw}, age=#{age}, phone=#{phone}, email=#{email}, addr=#{addr}, regdate=sysdate 
+		where a_idx = #{a_idx}
+	</update>
+	
+	<delete id="deleteAdmin"
+		parameterType="com.spring.trip.admin.AdminVO">
+		delete from admin 
+		where a_idx = #{a_idx}
+	</delete>
+	
+	
+	
+</mapper>  
+
+
+
+
+
+

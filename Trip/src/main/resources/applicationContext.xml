@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- 비즈니스 영역의 빈생성 및 필드 주입 처리 -->
+	<!-- @Component 어노테이션 설정된 클래스 객체생성 및 주입 -->
+	<context:component-scan base-package="com.spring.trip"/>
+	
+	<!-- ============================ -->
+	<!-- Spring JDBC 관련 설정 -->
+	<!-- DataSource 설정 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+			destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@203.236.209.181:1521:xe"/>
+		<property name="username" value="trip"/>
+		<property name="password" value="trip"/>
+	</bean>
+	
+	<!-- 스프링 JDBC : JdbcTemplate 객체 생성 설정 -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>	
+	
+	<!-- ========================== -->
+	<!-- 스프링-마이바티스 연동설정 -->
+	<!-- 방법1 : SqlSessionDaoSupport 상속구현 -->
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" 
+				value="classpath:mybatis-config.xml"/>
+	</bean>
+	
+	<!-- 방법2 : SqlSessionTemplate 사용 -->
+	<!-- SqlSessionFactoryBean 객체를 필드 주입 받아서 사용 -->
+	<bean class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSession"></constructor-arg>
+	</bean>	
+	
+</beans>
+
+
+

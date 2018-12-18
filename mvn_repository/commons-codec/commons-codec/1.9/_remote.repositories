@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Dec 18 14:39:05 KST 2018
+commons-codec-1.9-sources.jar>oracle=
+commons-codec-1.9.jar>oracle=
+commons-codec-1.9.pom>oracle=

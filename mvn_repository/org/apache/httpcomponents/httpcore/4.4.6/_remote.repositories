@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Dec 18 14:39:03 KST 2018
+httpcore-4.4.6.pom>oracle=
+httpcore-4.4.6.jar>oracle=
+httpcore-4.4.6-sources.jar>oracle=

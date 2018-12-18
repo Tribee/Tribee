@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Nov 23 09:59:15 KST 2018
+aspectjweaver-1.8.11.pom>oracle=
+aspectjweaver-1.8.11.jar>oracle=
+aspectjweaver-1.8.11-sources.jar>oracle=

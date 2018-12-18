@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Dec 03 11:58:30 KST 2018
+ibatis-core-3.0.jar>oracle=
+ibatis-core-3.0-sources.jar>oracle=
+ibatis-core-3.0.pom>oracle=

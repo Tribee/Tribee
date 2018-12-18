@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Dec 03 11:39:31 KST 2018
+spring-tx-4.3.5.RELEASE.jar>oracle=
+spring-tx-4.3.5.RELEASE.jar>central=
+spring-tx-4.3.5.RELEASE.pom>oracle=
+spring-tx-4.3.5.RELEASE.pom>central=
+spring-tx-4.3.5.RELEASE-sources.jar>oracle=

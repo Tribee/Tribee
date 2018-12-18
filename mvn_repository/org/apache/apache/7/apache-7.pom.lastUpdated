@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Wed Dec 12 11:45:48 KST 2018
+http\://repo.spring.io/plugins-release/.error=Could not transfer artifact org.apache\:apache\:pom\:7 from/to oracle (http\://repo.spring.io/plugins-release/)\: repo.spring.io
+@default-oracle-http\://repo.spring.io/plugins-release/.lastUpdated=1544582748109
+https\://repo.maven.apache.org/maven2/.lastUpdated=1544582748412

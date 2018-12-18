@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Dec 03 14:35:01 KST 2018
+http\://repo.spring.io/plugins-release/.error=Could not transfer artifact junit\:junit\:jar\:sources\:4.12 from/to oracle (http\://repo.spring.io/plugins-release/)\: repo.spring.io
+@default-oracle-http\://repo.spring.io/plugins-release/.lastUpdated=1543815300151
+https\://repo.maven.apache.org/maven2/.lastUpdated=1543815301464

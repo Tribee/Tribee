@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Nov 30 17:35:18 KST 2018
+jackson-annotations-2.7.0-sources.jar>oracle=
+jackson-annotations-2.7.0.pom>oracle=
+jackson-annotations-2.7.0.jar>oracle=

@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Nov 30 17:35:17 KST 2018
+jackson-databind-2.7.2.pom>oracle=
+jackson-databind-2.7.2.jar>oracle=
+jackson-databind-2.7.2-sources.jar>oracle=
