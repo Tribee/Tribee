@@ -24,14 +24,12 @@
 			alert("닉네임을 입력하세요.");
 			frm.nick_name.focus();
 			return false;
-		}
-		
+		}		
 		if (frm.age.value == "") {
 			alert("나이를 입력하세요.");
 			frm.age.focus();
 			return false;
-		}
-		
+		}		
 		if (!(frm.age.value >= 1 && frm.age.value <= 150)) {
 			alert("정확한 나이를 입력하세요.");
 			frm.age.focus();
