@@ -47,13 +47,6 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println("MemberServiceImpl >> getMember 요청");
 		return memberDAO.getMember(vo);
 	}
-	
-	//회원 전체 수 조회
-	@Override
-	public int allClients() {
-		int clientsCnt = memberDAO.allClients();
-		return clientsCnt;
-	}
 
 	// 회원 목록 조회
 	@Override

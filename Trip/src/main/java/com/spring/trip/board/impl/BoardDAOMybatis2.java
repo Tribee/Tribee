@@ -44,14 +44,5 @@ public class BoardDAOMybatis2 {
 		System.out.println("===> Mybatis2로 getBoardSeq() 처리");
 		return mybatis.selectOne("board.getBoardSeq");
 	}
-	
-	public int allBoards() {
-		int boardsCnt = mybatis.selectOne("board.allBoards");
-		return boardsCnt;
-	}
 
-	public int allCountries() {
-		int contriesCnt = mybatis.selectOne("board.allCountries");
-		return contriesCnt;
-	}
 }

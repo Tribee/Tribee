@@ -16,5 +16,11 @@ public interface AdminService {
 	List<AdminVO> getAdminList();
 	//관리자 로그인시 정보조회
 	AdminVO adminLogin(String idx);
+	//전체 회원수
+	int allClients();
+	//전체 게시글 수
+	int allBoards();
+	//전체 등록된 나라 수
+	int allCountries();
 	
 }

@@ -17,9 +17,5 @@ public interface BoardService {
 	
 	int getBoardSeq();
 	
-	int allBoards();
-	
-	int allCountries();
-	
 	
 }

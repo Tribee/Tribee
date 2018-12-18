@@ -15,7 +15,7 @@
 	<a href = "insertBoard.jsp">insertBoard</a>
 	<a href = "allCountries.do"> test </a>
 	<a href = "myPage.do">myPage</a>
-	<a href = "allCountries.do"> adminPage </a>
+	<a href = "adminPage.do"> adminPage </a>
 	
 
 	<br><br><br><br>

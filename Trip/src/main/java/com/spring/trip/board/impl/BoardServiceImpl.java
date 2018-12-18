@@ -50,18 +50,5 @@ public class BoardServiceImpl implements BoardService{
 	public int getBoardSeq() {
 		return boardDAO.getBoardSeq();
 	}
-
-	@Override
-	public int allBoards() {
-		return boardDAO.allBoards();
-	}
-
-	@Override
-	public int allCountries() {
-		return boardDAO.allCountries();
-	}
 	
-	
-	
-
 }
