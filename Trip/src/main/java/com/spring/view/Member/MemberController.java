@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +24,7 @@ import com.spring.trip.member.impl.MemberServiceImpl;
 
 @Controller
 // "board"라는 이름의 Model이 있으면 session에 저장
-@SessionAttributes("member")
+//@SessionAttributes("member")
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
@@ -91,8 +92,10 @@ public class MemberController {
 			return "main.jsp";
 		}
 		MemberVO member = memberService.getMember(vo);
+		System.out.println("vo:"+vo);
 		if (member != null) {
 			session.setAttribute("member", member);
+			System.out.println("login session : " + session +", member: "+ session.getAttribute("member"));
 			return "Trip.jsp";
 		} else
 			return "main.do";
@@ -163,10 +166,12 @@ public class MemberController {
 	@RequestMapping("/myPage.do")
 	public String getMember(HttpSession session, Model model) {
 		System.out.println("MemberController >>> 마이페이지 (myPage)");
+		System.out.println("member:" + session.getAttribute("member"));
 		
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		String id = member.getId();
 		
+		System.out.println("mypage : session : " + session +", member: "+ member);
 		
 		model.addAttribute("member", memberService.myPageMember(id));
 		model.addAttribute("board", memberService.myPageBoard(id));
@@ -216,16 +221,16 @@ public class MemberController {
 	
 	//회원 탈퇴
 	@RequestMapping("/userDel.do")
-	public String deleteMember(MemberVO vo, HttpSession session, Model model, HttpServletRequest request) {
+	public String deleteMember(HttpSession session) {
 		System.out.println("MemberController >>> 회원 삭제 (deleteMember)");
 		
 		MemberVO member = (MemberVO) session.getAttribute("member");
-		int m_idx = member.getM_idx();
+
+		memberService.deleteMember(member);
 		
-		vo.setM_idx(m_idx);
-		memberService.deleteMember(vo);
-		
+		System.out.println("user_del : " + session);
 		session.invalidate();
+		
 		return "main.jsp";
 	}
 

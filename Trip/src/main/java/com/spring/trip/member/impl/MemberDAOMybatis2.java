@@ -92,6 +92,7 @@ public class MemberDAOMybatis2 {
 	//내가 쓴 글 개수
 	public int boardCount(String id) {
 		System.out.println("===> Mybatis2로 boardCount() 처리");
+		System.out.println("id:" + id);
 		return mybatis.selectOne("member.boardCount", id);
 	}
 	
