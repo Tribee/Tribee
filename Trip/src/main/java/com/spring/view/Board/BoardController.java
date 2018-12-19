@@ -2,11 +2,8 @@ package com.spring.view.Board;
 
 import java.io.File;
 import java.io.IOException;
-<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.Iterator;
-=======
->>>>>>> refs/remotes/origin/master
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
