@@ -85,9 +85,15 @@ public class MemberController {
 		MemberVO member = memberService.getMember(vo);
 		System.out.println("vo:"+vo);
 		if (member != null) {
-			session.setAttribute("member", member);
-			System.out.println("login session : " + session +", member: "+ session.getAttribute("member"));
-			return "Trip.jsp";
+			if((vo.getId()).equals("admin")) {
+				session.setAttribute("admin", member);
+				System.out.println("admin login : " + session +", admin: "+ session.getAttribute("admin"));
+				return "adminPage.do";
+			}else {
+				session.setAttribute("member", member);
+				System.out.println("login session : " + session +", member: "+ session.getAttribute("member"));
+				return "Trip.jsp";
+			}
 		} else
 			return "main.do";
 	}
