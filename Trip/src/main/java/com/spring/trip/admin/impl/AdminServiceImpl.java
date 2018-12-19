@@ -53,7 +53,23 @@ public class AdminServiceImpl implements AdminService{
 		System.out.println(">> adminServiceImpl - adminLogin(String idx)실행");
 		return adminDAO.adminLogin(idx);
 	}
-	
-	
 
+	@Override
+	public int allClients() {
+		int cilentsCnt = adminDAO.allClients();
+		return cilentsCnt;
+	}
+
+	@Override
+	public int allBoards() {
+		int boardsCnt = adminDAO.allBoards();
+		return boardsCnt;
+	}
+
+	@Override
+	public int allCountries() {
+		int contriesCnt = adminDAO.allCountries();
+		return contriesCnt;
+	}
+	
 }

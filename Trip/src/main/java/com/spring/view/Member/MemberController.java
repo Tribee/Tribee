@@ -42,16 +42,7 @@ public class MemberController {
 
 		return "member.jsp";
 	}
-	
-	//전체 회원수 조회
-	@RequestMapping(value = "/allClients.do")
-	public String allClients(Model model){
-		int clientsCnt = memberService.allClients();
-		model.addAttribute("cilentsCnt", clientsCnt);
-		System.out.println("cilentsCnt : " + clientsCnt);
-		
-		return "adminPage2.jsp";
-	}
+
 
 	// 회원 가입
 	@RequestMapping(value = "/insertMember.do", method = RequestMethod.POST)

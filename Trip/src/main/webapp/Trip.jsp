@@ -15,7 +15,11 @@
 	<a href = "insertBoard.jsp">insertBoard</a>
 	<a href = "allCountries.do"> test </a>
 	<a href = "myPage.do">myPage</a>
+<<<<<<< HEAD
 	<a href = "allCountries.do"> adminPage </a>
+=======
+	<a href = "adminPage.do"> adminPage </a>
+>>>>>>> refs/remotes/origin/master
 	
 
 	<br><br><br><br>

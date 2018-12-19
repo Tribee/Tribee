@@ -44,4 +44,21 @@ public class AdminDAOMybatis2 {
 		System.out.println("===> 관리자 로그인시 관리자 객체 불러오기 >> Mybatis2 - adminLogin()");
 		return mybatis.selectOne("admin.getAdminLogin", idx);
 	}
+
+	public int allClients() {
+		int cilentsCnt = mybatis.selectOne("admin.allClients");
+		return cilentsCnt;
+	}
+	
+	public int allBoards() {
+		int boardsCnt = mybatis.selectOne("admin.allBoards");
+		return boardsCnt;
+	}
+
+	public int allCountries() {
+		int contriesCnt = mybatis.selectOne("admin.allCountries");
+		return contriesCnt;
+	}
+	
+	
 }
