@@ -17,5 +17,9 @@ public interface BoardService {
 	
 	int getBoardSeq();
 	
+	List<CommentVO> getCommentList(BoardVO vo);
+	
+	int insertComment(CommentVO vo);
+	
 	
 }

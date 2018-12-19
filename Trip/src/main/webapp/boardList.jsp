@@ -8,6 +8,27 @@
 <title>Insert title here</title>
 
 <style>
+	
+	#modal2_container{
+		position : relative;
+	}
+	#comment_group{
+		position : absolute;
+		bottom : 5px;
+		left : 10px;
+	}
+	#modal2_child_exit{
+		position : absolute;
+		top : 0px;
+		right : 0px;
+	}
+    
+	#test_hidden{
+	  overflow : hidden;
+	}
+   .hidden{
+   	  overflow: auto;
+   }
    #float-left{
    	float : left;
    }
@@ -133,10 +154,15 @@
          console.log(i);
          mybtns[i].onclick = function(){
               
-               
+        	   //world_bb_idx = bb_idx;
+
                var bb_idx = this.value;
                var m_bb_idx = document.getElementById("m_bb_idx");
                //Object.keys(object).length
+               
+               document.getElementById("world_bb_idx").value = bb_idx;
+               
+               <c:set var = "m_bb_idx">bb_idx</c:set>
                
                //modal에 넣을 변수 선언 부분!!!
                var m_img = document.getElementById("m_img");
@@ -158,7 +184,7 @@
                console.log(object);
                for(var i = 0; i < object.length; i++){
                   if(object[i]["bb_idx"] == bb_idx){
-                     
+                    
                      console.log(object[i]);
                      
                      m_img_stmt = "<img id = 'imgs' style = 'width: 680px; height : 640px;' src = 'resources/image/"+object[i]["bb_idx"]+".png' alt='Card image cap'>";
@@ -190,8 +216,7 @@
                
             };
       }
-      
-      
+       
    });
 </script>
 
@@ -284,7 +309,7 @@
                </div>
              </div>
            </div>
-        
+        	<input type = "hidden" value = "1" id = "world_bb_idx">
         </c:forEach>
       </div>
       <!-- /.row -->
@@ -332,13 +357,13 @@
          <div class="modal-dialog modal-lg">
 
             <!-- Modal content-->
-            <div class="modal-content" style = "width : 1031px">
+            <div class="modal-content" style = "width : 1031px; border : 0px">
                <!-- header 일단 주석 
                <div class="modal-header">
                   
                </div>
                 -->
-               <div class="modal-body" style = "padding : 0px; heigth : 624px " value = "test">
+               <div class="modal-body" style = "padding : 0px; height : 640px " value = "test">
                    <table class="table border-0" style = "margin-bottom: 0px;">
                       <tr style="height: 80px;">
                          <td rowspan='5' id = "m_img" style = "width: 680px; padding : 0px;  border-top-width: 0px;">이미지</td>
@@ -353,11 +378,11 @@
                          <td colspan = "3" id = "m_content" style = "border-top-width: 0px;">content</td>
                       </tr>
                       <tr>
-                         <td colspan = "3" style="border-top-width: 0px;"><em id = "m_comment">댓글 1,873개 전체 모두 보기</em><br><input type = "button" class = "btn" value = "ajax댓글" onclick = "ajaxComment()"></td>
+                         <td colspan = "3" style="border-top-width: 0px; width : 300px; height : 270px; padding-top : 0px; padding-bottom : 0px;" id = "test_hidden"><em id = "m_comment">댓글보기</em></td>
                       </tr>
-                      <tr style="height: 50px;">
+                      
                       	<td colspan = "3" style="border-top-width: 0px;">게시글 <a href="#">수정 </a> / <a href="#">삭제</a> &nbsp;<button type="button" class="close" data-dismiss="modal">&times;</button></td>
-                      </tr>
+                      
                    </table>
                </div>
            
@@ -367,43 +392,154 @@
       </div>
    	
    	
-   	<script>
-   	setInterval(ajaxComment,5000);
+   	<!-- Modal2 -->
+   	<div class="modal fade" style = "margin-right: 270px;padding-right: 16px;height: 700px;" id="commentModal" role="dialog">
+         <div class="modal-dialog modal-lg" style = "height : 640px">
+
+            <!-- Modal content-->
+            <div class="modal-content" style = "width : 1031px; height : 640px; border : 0px">
+             
+               <div class="modal-body" id = "modal2_container" style = "padding : 0px; height : 650px " value = "test">
+                  	<div id = "modal2_child_exit"><button type="button" class="close" data-dismiss="modal">&times;</button></div>
+                  	<div id = "modal2_comment">
+                  	
+                  	</div>
+                  	
+ 					  <div class="form-group" id = "comment_group">
+                  		<input type = "text" style = "width : 600px; height : auto;" id = "comment_content" placeholder = "댓글" name = "comment">
+                  		<input type = "button" class = "btn btn-primary"  id = "comment_submit_btn" value = "전송">
+               		  </div>
+               		
+                </div>
+           
+            </div>
+
+         </div>
+      </div>
    	
-   	function ajaxComment(){
-   		//alert("hi");
-   		$.ajax("commentList.do",{
-			type : "get",
-			dataType : "json", //응답결과의 데이터 타입
-			success : function(data){
-				
-				//alert("전달받은 결과값 : "+ data);
-				
-				var tbody = "";
-				//data - {"list" : []}
-				var alist = data; //JSON 객체의 속성 "list"의 값
-				//alert(alist);
-				$.each(alist, function(member){
-					tbody += "<tr>";
-					tbody += "<td>" + this["c_idx"]  +"</td>"; //JSON객체.속성명 , 여기서 this는 자신이 가리키는 객체(굳이 member를 쓸필요없이 가져옴)
-					tbody += "<td>" + this["id"] +"</td>";
-					tbody += "<td>" + this["content"]  +"</td>";
-					tbody += "<td>" + this["bb_idx"]  +"</td>"; //JSON객체["속성명"]
-					tbody += "<td>" + this["regdate"]  +"</td>";
-					tbody += "</tr>";
-				});
-				console.log(tbody);
-				$("#m_comment").html(tbody);
-			},
-			error : function(jqXHR, textStatus, errorThrown){
-				alert("실패 : \n"
-						+"jqXHR.readyState : " + jqXHR.readyState + "\n"
-						+ "textStatus : "+ textStatus +"\n"
-						+ "errorThrown : "+ errorThrown);
-			}
-			
+   	<script>
+    window.onload = function(){
+    	
+    	document.addEventListener('keydown',keypush);
+    	
+    	function keypush(evt){
+            switch(evt.keyCode){
+                case 13 : insertComment(); break;
+            }
+        }
+    	
+    	var comment_submit_btn = document.getElementById("comment_submit_btn");
+		comment_submit_btn.addEventListener("click", function(){
+			//alert("hihi");
+			insertComment();
 		});
-   	}
+		
+    	function insertComment(code){
+    	    
+    		var world_bb_idx = document.getElementById("world_bb_idx").value;
+    		var test = "test"; //임시로 준것!! 멤버로그인시 세션에 들어오면 바꿔주면 됨
+    		var content = document.getElementById("comment_content").value;
+    		document.getElementById("comment_content").value = " ";
+    		
+    		var insertCommentData = {
+    				"bb_idx" : world_bb_idx,
+    				"id" : id,
+    				"content" : content
+    		};
+    		
+    		console.log(insertCommentData);
+    	    $.ajax("commentInsert.do",{
+    	        type:'POST',
+    	        data: insertCommentData,
+    	        success : function(data){
+    	            if(data=="success")
+    	            {
+    	            	
+    	            }
+    	        },
+    	        error:function(request,status,error){
+    	            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    	       }
+    	        
+    	    });
+    	}
+    	
+    	
+		//setTimeout(ajaxComment,5000);
+     	setInterval(ajaxComment,500);
+       	
+       	
+       	
+       	function ajaxComment(){
+       		var world_bb_idx = document.getElementById("world_bb_idx").value;
+       		console.log("world_bb_idx : "+world_bb_idx);
+       		var allData = {"world_bb_idx" :  world_bb_idx};
+       		$.ajax("commentList.do",{
+    			type : "get",
+    			data : allData,
+    			dataType : "json", //응답결과의 데이터 타입
+    			success : function(data){
+    				
+    				
+    				var alist = data; //JSON 객체의 속성 "list"의 값
+    				//alert(alist);
+    				
+    				//alert("전달받은 결과값 : "+ data);
+    				var tbody = '<em><a href = "#" id = "comment_modal">댓글 '+alist.length+'개 전체 모두 보기</a></em>';
+    				tbody += "<table class = 'hidden'>";
+    				//data - {"list" : []}
+    				if(alist.length != 0){
+	    				for(var i = 0; i < alist.length; i++){
+	    					console.log(alist[i]);
+	    					tbody += "<tr>";
+	    					tbody += "<td class = 'hidden' style = "+"'word-break:break-all; padding : 0px;'><div class="+"'thumbnail circle'"+"style=background-image:url('resources/image/"+world_bb_idx+".png')></div>";
+	    					tbody += "<td class = 'hidden' style = 'word-break:break-all; width : 200px; height : 55px; text-overflow:ellipsis;'><strong>" + alist[i]["id"] + "</strong> &nbsp; &nbsp;"+ alist[i]["content"] + "</td>";
+	    					tbody += "</tr>";
+	    					if(i==2) break;
+	    				}
+    				}
+    				tbody += "</table>";
+    				console.log(tbody);
+    				if(tbody == undefined){
+    					tbody = '<em>댓글 '+0+'개 전체 모두 보기</em>';
+    					$("#m_comment").html(tbody);
+    				}else{
+    					$("#m_comment").html(tbody);
+    				}
+    			 	
+    			
+   				 if(alist.length != 0){
+   			    	  var tbody = "<table>";
+	    			  for(var i = 0; i < alist.length; i++){
+	    					console.log(alist[i]);
+	    					tbody += "<tr>";
+	    					tbody += "<td class = 'hidden' style = "+"'word-break:break-all; padding : 0px;'><div class="+"'thumbnail circle'"+"style=background-image:url('resources/image/"+world_bb_idx+".png')></div>";
+	    					tbody += "<td class = 'hidden' style = 'word-break:break-all; height : 55px; text-overflow:ellipsis;'><strong>" + alist[i]["id"] + "</strong> &nbsp; &nbsp;"+ alist[i]["content"] + "</td>";
+	    					tbody += "<td><span class='glyphicon glyphicon-heart'></span></td>";
+	    					tbody += "</tr>";
+	    			  }
+	    			  tbody += "</table>";
+    			  }	
+		    	  //alert(tbody);
+		    	  document.getElementById("modal2_comment").innerHTML = tbody;
+ 			    	  	
+   				 var comment_modal = document.getElementById("comment_modal");
+   			      comment_modal.onclick = function(){
+   			    	  //alert("전체댓글 수 : "+alist.length);
+   			    	  $("#commentModal").modal();
+   			      }
+    				
+    			},
+    			error : function(jqXHR, textStatus, errorThrown){
+    				alert("실패 : \n"
+    						+"jqXHR.readyState : " + jqXHR.readyState + "\n"
+    						+ "textStatus : "+ textStatus +"\n"
+    						+ "errorThrown : "+ errorThrown);
+    			}
+    			
+    		});
+       	}
+    }
    	
    	
    	

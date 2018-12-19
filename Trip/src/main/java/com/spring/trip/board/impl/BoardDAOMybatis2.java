@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.trip.board.BoardVO;
+import com.spring.trip.board.CommentVO;
 
 @Repository("boardDAOMybatis2")
 public class BoardDAOMybatis2 {
@@ -43,6 +44,16 @@ public class BoardDAOMybatis2 {
 	public int getBoardSeq() {
 		System.out.println("===> Mybatis2로 getBoardSeq() 처리");
 		return mybatis.selectOne("board.getBoardSeq");
+	}
+	
+	public List<CommentVO> getCommentList(BoardVO vo){
+		System.out.println("===> Mybatis2로 commentList 처리");
+		return mybatis.selectList("board.commentList", vo);
+	}
+	
+	public int insertComment(CommentVO vo){
+		System.out.println("comment Insert 작업전");
+		return mybatis.insert("board.commentInsert", vo);
 	}
 
 }

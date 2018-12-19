@@ -13,7 +13,7 @@
 
 	<select id="getBoardList" parameterType="com.spring.trip.board.BoardVO"
 		resultType="com.spring.trip.board.BoardVO">
-		select b.nick_name , a.*  from b_board a, member b where a.id = b.id
+		select b.nick_name , a.*  from b_board a, member b where a.id = b.id order by bb_idx desc
 	</select>
 	
 	<select id="getBoardSeq" resultType="int">
@@ -40,6 +40,16 @@
 		delete from b_board 
 		where bb_idx = #{bb_idx}
 	</delete>
+	
+	<select id = "commentList" resultType="com.spring.trip.board.CommentVO" 
+		parameterType="com.spring.trip.board.BoardVO">
+		select * from c_comment where bb_idx = #{bb_idx}
+	</select>
+	
+	<insert id="commentInsert" parameterType="com.spring.trip.board.CommentVO">
+		insert into c_comment (c_idx, id, content, bb_idx)
+        values (c_idx_seq.nextval, #{id}, #{content}, #{bb_idx})
+	</insert>
 	
 	
 </mapper>  

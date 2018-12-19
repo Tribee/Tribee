@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.trip.board.BoardService;
 import com.spring.trip.board.BoardVO;
+import com.spring.trip.board.CommentVO;
 import com.spring.trip.board.FileUploadVO;
 
 @Controller
@@ -194,5 +195,34 @@ public class BoardController {
 		return "getBoardList.do";
 	}
 	
+	
+	//comment 작성 부분==========================================
+	@RequestMapping("/commentList.do")
+	@ResponseBody //response 객체의 몸체(body)에 데이타 전달
+	public List<CommentVO> commentList(BoardVO vo, HttpServletRequest request) {
+		String bb_idx = request.getParameter("world_bb_idx");
+		System.out.println("bb_idx : "+ bb_idx);
+		vo.setBb_idx(Integer.parseInt(bb_idx));
+		List<CommentVO> commentList = boardService.getCommentList(vo);
+		return commentList;
+	}
+	
+	@RequestMapping("/commentInsert.do")
+	@ResponseBody //response 객체의 몸체(body)에 데이타 전달
+	public void commentInsert(CommentVO vo, HttpServletRequest request) {
+		String bb_idx = request.getParameter("bb_idx");
+		String id = request.getParameter("id");
+		String content = request.getParameter("content");
+		System.out.println("bb_idx : "+ bb_idx);
+		System.out.println("id : "+ id);
+		System.out.println("content : "+ content);
+		vo.setBb_idx(bb_idx);
+		vo.setId(id);
+		vo.setContent(content);
+		
+		boardService.insertComment(vo);
+		System.out.println("댓글 완료!");
+
+	}
 	
 }

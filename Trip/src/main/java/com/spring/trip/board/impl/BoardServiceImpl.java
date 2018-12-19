@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.trip.board.BoardService;
 import com.spring.trip.board.BoardVO;
+import com.spring.trip.board.CommentVO;
 
 //@Service : @Component를 상속받아 만든 비즈니스 로직처리 서비스 영역에 사용
 @Service("boardService")
@@ -49,6 +50,14 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int getBoardSeq() {
 		return boardDAO.getBoardSeq();
+	}
+	
+	public List<CommentVO> getCommentList(BoardVO vo){
+		return boardDAO.getCommentList(vo);
+	}
+	
+	public int insertComment(CommentVO vo) {
+		return boardDAO.insertComment(vo);
 	}
 	
 }
