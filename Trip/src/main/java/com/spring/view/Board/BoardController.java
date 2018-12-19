@@ -2,10 +2,12 @@ package com.spring.view.Board;
 
 import java.io.File;
 import java.io.IOException;
+<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.Iterator;
+=======
+>>>>>>> refs/remotes/origin/master
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -195,24 +197,5 @@ public class BoardController {
 		return "getBoardList.do";
 	}
 	
-	//전체 게시글 조회
-	@RequestMapping(value = "/allBoards.do")
-	public String allClients(Model model){
-		int boardsCnt = boardService.allBoards();
-		model.addAttribute("boardsCnt", boardsCnt);
-		System.out.println("boardsCnt : " + boardsCnt);
-		
-		return "adminPage2.jsp";
-	}
-	
-	//전체 게시글 조회
-	@RequestMapping(value = "/allCountries.do")
-	public String allCountries(Model model){
-		int contriesCnt = boardService.allCountries();
-		model.addAttribute("contriesCnt", contriesCnt);
-		System.out.println("contriesCnt : " + contriesCnt);
-		
-		return "adminPage2.jsp";
-	}
 	
 }

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.spring.trip.admin.AdminService;
 import com.spring.trip.admin.AdminVO;
+import com.spring.view.Board.BoardController;
+import com.spring.view.Member.MemberController;
 
 @Controller
 //"board"라는 이름의 Model이 있으면 session에 저장
@@ -76,6 +78,28 @@ public class AdminController {
 		adminService.deleteAdmin(vo);
 
 		return "getAdminList.do";
+	}
+	
+	@RequestMapping("/adminPage.do")
+	public String getAdminPage(Model model) {
+		System.out.println(">>> adminPage로 고고씽");
+		
+		//전체 회원수
+		int clientsCnt = adminService.allClients();
+		model.addAttribute("cilentsCnt", clientsCnt);
+		System.out.println("cilentsCnt : " + clientsCnt);
+		
+		//전체 게시글 수
+		int boardsCnt = adminService.allBoards();
+		model.addAttribute("boardsCnt", boardsCnt);
+		System.out.println("boardsCnt : " + boardsCnt);
+		
+		//전체 등록된 나라 수
+		int contriesCnt = adminService.allCountries();
+		model.addAttribute("contriesCnt", contriesCnt);
+		System.out.println("contriesCnt : " + contriesCnt);
+		
+		return "adminPage.jsp";
 	}
 	
 

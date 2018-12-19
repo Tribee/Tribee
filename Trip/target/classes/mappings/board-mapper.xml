@@ -41,18 +41,6 @@
 		where bb_idx = #{bb_idx}
 	</delete>
 	
-	<!-- 전체 게시글 수 조회 -->
-	<select id="allBoards"
-		resultType="int">
-		select count(*) from b_board	
-	</select>
-	
-	<!-- 등록된 나라 수 조회 -->
-	<select id="allCountries"
-		resultType="int">
-		select count(country) from b_board	
-	</select>
-	
 	
 </mapper>  
 

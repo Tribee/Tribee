@@ -20,12 +20,6 @@ public class MemberDAOMybatis2 {
 		System.out.println("MemberDAOMybatis2 ===> Mybatis2로 getMember() 처리");
 		return mybatis.selectOne("member.getMember", vo);
 	}
-	
-	// 전체 회원수 조회
-	public int allClients() {
-		int clientsCnt = mybatis.selectOne("member.allClients");
-		return clientsCnt;
-	}
 
 	// 멤버 전체조회
 	public List<MemberVO> getMemberList(MemberVO vo) {
@@ -92,6 +86,7 @@ public class MemberDAOMybatis2 {
 	//내가 쓴 글 개수
 	public int boardCount(String id) {
 		System.out.println("===> Mybatis2로 boardCount() 처리");
+		System.out.println("id:" + id);
 		return mybatis.selectOne("member.boardCount", id);
 	}
 	

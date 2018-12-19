@@ -18,8 +18,6 @@ public interface MemberService {
 	MemberVO getMember(MemberVO vo);
 	//회원 목록 전체 조회
 	List<MemberVO> getMemberList(MemberVO vo);
-	//전체 회원 수 조회
-	int allClients();
 	
 	//회원가입시 id중복체크
 	int idDuplChk(String id);
