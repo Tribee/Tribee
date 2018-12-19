@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="EUC-KR"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,20 +15,19 @@
 <%--
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 --%>
+<title>글 작성 페이지</title>
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=5jEX8e7bvKVZGhXBRBn9&submodules=geocoder"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-
-
-<title>글 작성 페이지</title>
-
 <script src="./js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+
+
 
 
 <style>
@@ -42,8 +42,8 @@
 }
 
 #map {
-	width: 430px;
-	height: 430px;
+	width: 343px;
+	height: 343px;
 	float: right;
 	margin-left: 2%;
 	margin-top: 2%;
@@ -71,6 +71,9 @@
 
 #location-form {
 	display: inline;
+}
+#editor {
+	height: 500px;
 }
 
 <%--
@@ -170,7 +173,8 @@ div.upload-btn_wrap button { /*버튼 div*/
 		<div class="form_div">
 			<form method="post" enctype="multipart/form-data">
 				<div class="form-group mx-4" id="form">
-					<div class="col">
+					<!-- 
+						<div class="col">
 						<label for="location">행선지를 선택해주세요</label>
 						<form id="location-form">
 							<input class="form-control" type="text" id="location-input"
@@ -178,7 +182,8 @@ div.upload-btn_wrap button { /*버튼 div*/
 							<button class="form-control" type="search"
 								class="btn btn-primary">search</button>
 						</form>
-					</div>
+					</div> 
+					-->
 					<br>
 					<div class="col">
 						<label for="start_date">출발일</label> <input class="form-control"
@@ -216,20 +221,6 @@ div.upload-btn_wrap button { /*버튼 div*/
 
 		<div id="map"></div>
 
-		<%--  
-	<div id="map"></div>
-	<div style="width: 50%">
-		<!-- <label for="location">행선지를 선택해주세요</label> -->
-				<form id="location-form">
-					<input class="form-control" type="text" id="location-input" class="form-control form-control"> 
-					<br>
-					<button class="form-control" type="search" class="btn btn-primary">search</button>
-				</form>
-	</div>
-	 --%>
-
-
-
 
 		<div class="form-group mx-5" id="editor">
 			<form>
@@ -237,11 +228,12 @@ div.upload-btn_wrap button { /*버튼 div*/
 					cols="800">${board.content}</textarea>
 				<script>
 							CKEDITOR.replace( 'editor1', {
-							    filebrowserImageUploadUrl : '/ckeditorImgUpload.do'
+							    filebrowserImageUploadUrl : 'fileUpload.do'
 						    } );
 				 		</script>
 			</form>
 		</div>
+
 
 
 	</div>

@@ -2,7 +2,15 @@ package com.spring.view.Board;
 
 import java.io.File;
 import java.io.IOException;
+<<<<<<< HEAD
+import java.util.HashMap;
+import java.util.Iterator;
+=======
+>>>>>>> refs/remotes/origin/master
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,11 +18,15 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.trip.board.BoardService;
 import com.spring.trip.board.BoardVO;
+import com.spring.trip.board.FileUploadVO;
 
 @Controller
 //"board"라는 이름의 Model이 있으면 session에 저장
@@ -77,7 +89,92 @@ public class BoardController {
 		boardService.insertBoard(vo);
 		return "getBoardList.do";
 	}
+	
+	
+	/////////////////////////////////////////////////////////ckeditor로 이미지 업로드 테스트////////////////////////////////////////////////
+	
+//	@RequestMapping(value = "/ckeditorImgUpload.do", method = RequestMethod.POST)
+//    public void communityImageUpload(HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile upload) {
+//		OutputStream out = null;
+//		PrintWriter printWriter = null;
+//		response.setCharacterEncoding("utf-8");
+//		
+//		try {
+//			String fileName = upload.getOriginalFilename();
+//			byte[] bytes = upload.getBytes();
+//			String uploadPath = "저장경로/" + fileName; //저장경로
+//			
+//			out = new FileOutputStream(new File(uploadPath));
+//			out.write(bytes);
+//			String callback = request.getParameter("CKEditorFuncNum");
+//			
+//			printWriter = response.getWriter();
+//			String fileUrl = "저장한 URL경로/" + fileName; //url 경로
+//			
+//			printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("
+//					+ callback
+//					+ ",'"
+//					+ fileUrl
+//					+ "','이미지를 업로드 하였습니다.'"
+//					+ ")</script>");
+//			printWriter.flush();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				if (out != null) {
+//					out.close();
+//				} if(printWriter != null) {
+//					printWriter.close();
+//				}
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//	}
+	
+	
+	@Controller
+	public class FileUploadController{
+	    @RequestMapping(value = "/fileUpload.do")
+	    public String fileUpload(@ModelAttribute("fileUploadVO") FileUploadVO fileUploadVO , HttpServletRequest request , Model model){
+	        HttpSession session = request.getSession();
+	        String rootPath = session.getServletContext().getRealPath("/");
+	        String attachPath = "upload/";
 
+	        MultipartFile upload = fileUploadVO.getUpload();
+	        String filename = "";
+	        String CKEditorFuncNum = "";
+	        
+	        if(upload != null){
+	            filename = upload.getOriginalFilename();
+	            fileUploadVO.setFilename(filename);
+	            CKEditorFuncNum = fileUploadVO.getCKEditorFuncNum();
+	            try{
+	                File file = new File(rootPath + attachPath + filename);
+	                upload.transferTo(file);
+	            }catch(IOException e){
+	                e.printStackTrace();
+	            }  
+	        }
+	            model.addAttribute("filePath",attachPath + filename);          //결과값을
+	            model.addAttribute("CKEditorFuncNum",CKEditorFuncNum);//jsp ckeditor 콜백함수로 보내줘야함
+	        return "ckeditorCallback.jsp";
+	    }
+	}
+	
+	
+	
+//	
+	/////////////////////////////////////////////////////////ckeditor로 이미지 업로드 테스트////////////////////////////////////////////////
+
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/updateBoard.do")
 	public String updateBoard(BoardVO vo) {
 		System.out.println(">>> 글 수정 요청 처리(updateBoard)");
